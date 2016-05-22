@@ -22,9 +22,8 @@ if SERVER then
 	flow:setSynchronizer(dataflow.globalIdSynchronizer("test"))
 	
 	-- Subscribe all newly spawned players to our Flow
-	hook.Add("PlayerInitialSpawn", "AutoSubscribeTestFlow", function(ply)
-		flow:subscribe(ply)
-	end)
+	-- You could also pass a function that accepts a player parameter and returns whether they should be subscribed
+	flow:addAutoSubscriberHook(true)
 	
 	-- Set key in table and update to all subscribers
 	myGlobalData.hello = "world"
